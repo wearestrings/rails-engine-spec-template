@@ -2,8 +2,8 @@ say "Installing guard..."
 
 inject_into_file GEMSPEC_FILE, before: %r{^end$} do
 %{
-  s.add_development_dependency 'guard-rspec'
-  s.add_development_dependency 'guard-rails'
+  spec.add_development_dependency 'guard-rspec'
+  spec.add_development_dependency 'guard-rails'
 }
 end
 
