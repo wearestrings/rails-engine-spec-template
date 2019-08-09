@@ -5,7 +5,7 @@ rails-engine-spec-template
 * Configures dummy app
 * Configures postgresql as database
 * Configures factory_bot_rails gem
-* Configures kaer gem
+* Configures faker gem
 * Configures database_cleaner gem
 * Configures shoulda-matchers gem
 * Configures development dependencies
