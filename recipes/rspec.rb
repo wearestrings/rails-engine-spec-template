@@ -6,16 +6,22 @@ inject_into_file GEMSPEC_FILE, after: /s\.files.*$/ do
 end
 
 # Add the gems
-inject_into_file GEMSPEC_FILE, before: %r{^end$} do
-  %{
-  spec.add_development_dependency 'rspec-rails'
-  spec.add_development_dependency 'factory_bot_rails'
-}
-end
 
 inject_into_file "Gemfile", after: %r{^gemspec$} do
 %{
-  gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', group: [:test]
+group :test, :development do 
+	gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git'
+	gem 'factory_bot_rails'
+	gem 'faker'
+	gem 'database_cleaner'
+  gem 'rspec-rails'
+
+  gem 'guard-rspec'
+  gem 'guard-rails'
+
+  gem 'pry-doc'
+  gem 'pry-rails'
+end
 }
 end
 
@@ -49,7 +55,7 @@ end
 gsub_file "spec/rails_helper.rb", "File.expand_path('../../config/environment', __FILE__)", "File.expand_path('../dummy/config/environment.rb', __FILE__)"
 
 # Require factory girl
-insert_into_file "spec/rails_helper.rb", "\nrequire 'factory_bot_rails'", after: "require 'rspec/rails'"
+insert_into_file "spec/rails_helper.rb", "\nrequire 'factory_bot_rails'\nrequire 'database_cleaner'", after: "require 'rspec/rails'"
 
 # Add Factory Girl methods to RSpec, and include the route's url_helpers.
 insert_into_file "spec/rails_helper.rb", after: "config.use_transactional_fixtures = true" do

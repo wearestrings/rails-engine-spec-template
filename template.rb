@@ -41,7 +41,7 @@ git_commit "Initial commit of empty Rails engine."
 
 GEMSPEC_FILE = File.join(destination_root, "#{name}.gemspec")
 RECIPE_PATH = File.join(File.dirname(rails_template), "recipes")
-RECIPES = %w{normalize_gemspec rspec postgres guard developer_gems}
+RECIPES = %w{normalize_gemspec rspec postgres}
 
 RECIPES.each do |recipe|
   apply File.join(RECIPE_PATH, "#{recipe}.rb")
