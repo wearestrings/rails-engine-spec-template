@@ -1,7 +1,18 @@
 error = false
 
-puts File.join(destination_root, "lib", name, "engine.rb")
-unless File.exist?(File.join(destination_root, "lib", name, "engine.rb"))
+say %{
+-----------------------------------------------------
+STRINGS DIGITAL PRODUCTS S.L engine template
+This will install rspec, spec/dummy, postgres, 
+faker, uuid as id as default and default database.yml
+Please remenber to name as [project_name]-[component] 
+the new engine to fit Strings requirements
+-----------------------------------------------------
+
+}
+
+puts File.join(destination_root, "lib", namespaced_name, "engine.rb").inspect
+unless File.exist?(File.join(destination_root, "lib", namespaced_name, "engine.rb"))
   say "ERROR: This is for engines only. You need to create a new engine with"
   say "       'rails plugin new' and specify '--mountable' or '--full'."
   error = true
@@ -41,7 +52,7 @@ git gc: "--quiet"
 
 say %{
   Things to do:
-    - createdb #{name}_test
+    - createdb #{name.underscore}_test
     - rspec
     - guard
 

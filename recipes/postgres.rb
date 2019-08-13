@@ -2,10 +2,12 @@ DATABASE_YML = "spec/dummy/config/database.yml"
 
 say "Installing Postgresql gem..."
 
+underscored_name = name.underscore
+
 gsub_file DATABASE_YML, /^(  adapter: ).*$/, '\1%s' % "postgresql"
-gsub_file DATABASE_YML, /^(  database: )dummy_development.*$/, '\1%s' % " #{name}_development"
-gsub_file DATABASE_YML, /^(  database: )dummy_test.*$/, '\1%s' % " #{name}_test"
-gsub_file DATABASE_YML, /^(  database: )dummy_production.*$/, '\1%s' % " #{name}_production"
+gsub_file DATABASE_YML, /^(  database: )dummy_development.*$/, '\1%s' % " #{underscored_name}_development"
+gsub_file DATABASE_YML, /^(  database: )dummy_test.*$/, '\1%s' % " #{underscored_name}_test"
+gsub_file DATABASE_YML, /^(  database: )dummy_production.*$/, '\1%s' % " #{underscored_name}_production"
 
 inject_into_file DATABASE_YML, after: %r{^  encoding: unicode$} do
   %{

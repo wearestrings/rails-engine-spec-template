@@ -19,7 +19,7 @@ bundle
 generate "rspec:install"
 
 # Setting rspec and factory_girl as default generators...
-insert_into_file "lib/#{name}/engine.rb", after: /isolate_namespace .*$/ do
+insert_into_file "lib/#{namespaced_name}/engine.rb", after: /isolate_namespace .*$/ do
   %{
 
     config.generators do |g|
