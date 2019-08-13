@@ -10,7 +10,12 @@ inject_into_file GEMSPEC_FILE, before: %r{^end$} do
   %{
   spec.add_development_dependency 'rspec-rails'
   spec.add_development_dependency 'factory_bot_rails'
-  spec.add_development_dependency 'shoulda-matchers'
+}
+end
+
+inject_into_file "Gemfile", after: %r{^gemspec$} do
+%{
+  gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', group: [:test]
 }
 end
 
